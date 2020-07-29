@@ -34,6 +34,8 @@ demo_web_app(gpt, config)
 
 Running this code as a python script would automatically launch a web app for you to test new inputs and outputs with. There are already 3 example scripts in the `examples` directory.
 
+You can also prime GPT from the UI. for that, pass `show_example_form=True` to `UIConfig` along with other parameters.
+
 Technical details: the backend is in Flask, and the frontend is in React. Note that this repository is currently not intended for production use.
 
 ## Background
@@ -57,14 +59,16 @@ Instructions to install Python 3 are [here](https://realpython.com/installing-py
 First, clone or fork this repository. Then to set up your virtual environment, do the following:
 
 1. Create a virtual environment in the root directory: `python -m venv $ENV_NAME`
-2. Activate the virtual environment: ` source $ENV_NAME/bin/activate`
+2. Activate the virtual environment: ` source $ENV_NAME/bin/activate` (for MacOS, Unix, or Linux users) or ` .\ENV_NAME\Scripts\activate` (for Windows users)
 3. Install requirements: `pip install -r api/requirements.txt`
-4. To add your secret key: create a file anywhere on your computer called `openai.cfg` with the contents `OPENAI_KEY=$YOUR_SECRET_KEY`, where `$YOUR_SECRET_KEY` looks something like `'sk-somerandomcharacters'`. If you are unsure what your secret key is, navigate to the [API docs](https://beta.openai.com/developer-quickstart) and copy the token displayed next to the "secret" key type.
-5. Set your environment variable to read the secret key: run `export OPENAI_CONFIG=/path/to/config/openai.cfg`
+4. To add your secret key: create a file anywhere on your computer called `openai.cfg` with the contents `OPENAI_KEY=$YOUR_SECRET_KEY`, where `$YOUR_SECRET_KEY` looks something like `'sk-somerandomcharacters'` (including quotes). If you are unsure what your secret key is, navigate to the [API docs](https://beta.openai.com/developer-quickstart) and copy the token displayed next to the "secret" key type.
+5. Set your environment variable to read the secret key: run `export OPENAI_CONFIG=/path/to/config/openai.cfg` (for MacOS, Unix, or Linux users) or `set OPENAI_CONFIG=/path/to/config/openai.cfg` (for Windows users)
 6. Run `yarn install` in the root directory
 
-To verify that your environment is set up properly, run one of the 3 scripts in the `examples` directory:
+If you are a Windows user, to run the demos, you will need to modify the following line inside `api/demo_web_app.py`:
+`subprocess.Popen(["yarn", "start"])` to `subprocess.Popen(["yarn", "start"], shell=True)`
 
+To verify that your environment is set up properly, run one of the 3 scripts in the `examples` directory:
 `python examples/run_latex_app.py`
 
 A new tab should pop up in your browser, and you should be able to interact with the UI! To stop this app, run ctrl-c or command-c in your terminal.
@@ -97,6 +101,8 @@ output: \int_a^b f(x) dx
 
 We actively encourage people to contribute by adding their own examples or even adding functionalities to the modules. Please make a pull request if you would like to add something, or create an issue if you have a question. We will update the contributors list on a regular basis.
 
+Please *do not* leave your secret key in plaintext in your pull request!
+
 ## Authors
 
 The following authors have committed 20 lines or more (ordered according to the Github contributors page):
@@ -104,5 +110,7 @@ The following authors have committed 20 lines or more (ordered according to the 
 * Shreya Shankar
 * Bora Uyumazturk
 * Devin Stein
+* Gulan
+* Michael Lavelle
 
 
