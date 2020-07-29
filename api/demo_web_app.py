@@ -31,5 +31,6 @@ def demo_web_app(gpt, config=UIConfig()):
         response = gpt.submit_request(prompt)
         return {'text': response['choices'][0]['text'][7:]}
 
-    subprocess.Popen(["yarn", "start"])
+    print('whoa')
+    subprocess.Popen(["C:\\Program Files (x86)\\Yarn\\bin\\yarn.cmd", "start"])
     app.run()
